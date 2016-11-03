@@ -1,0 +1,35 @@
+<html>
+<head>
+    <title>城市选择</title>
+    <meta charset="utf-8">
+</head>
+<body>
+<div id="city">
+    <!--
+            <div class="mod-city-selector">
+                <select name="provice" class="province-list">
+                    <option value="北京市">北京市</option>
+                </select>
+                <select name="city" class="city-list">
+                    <option value="市辖区">市辖区</option>
+                </select>
+                <select name="area" class="area-list">
+                    <option value="东城区">东城区</option>
+                </select>
+            </div>
+            -->
+</div>
+<script src="./js/sea.js"></script>
+<script>
+    // seajs 的简单配置
+    seajs.config({
+        alias: {
+            "CitySelector": "app/hna-city-selector.js"
+        }
+    });
+
+    // 加载入口模块
+    seajs.use("./js/city-cmd.js");
+</script>
+</body>
+</html>
