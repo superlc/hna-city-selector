@@ -60,6 +60,7 @@
             },0);
         },
         _draw : function (params,fragmentFrame) {
+            console.log(params);
             var _this = this;
             var data = this.data;
 
@@ -101,6 +102,7 @@
          * data : 数组
          * */
         generateList : function (filter,data,className) {
+            console.log(filter,data,className)
             //没有默认值
             var select = document.createElement('select');
             var count = data.length;
@@ -113,8 +115,8 @@
                 selectedValue = data[0].name || data[0];
             }else{
                 for(var i = 0 ; i < count ; i++){
-                    if(filter == data[i].name){
-                        selectedValue = data[i].name || data[i];
+                    if(filter == data[i].name || data[i]){
+                        selectedValue = filter;
                         break;
                     }
                 }
@@ -245,35 +247,6 @@
             return {
                 selectDom : select,
                 selectVal : selectedValue
-            };
-        },
-        update : function (params) {
-            var _this = this;
-            var data = this.data;
-
-            var provinceResult,
-                cityResult,
-                areaResult;
-            provinceResult= _this.updateList(params[0],data);
-
-            var pCount = data.length;
-            for(var i = 0 ; i < pCount ; i++){
-                if(provinceResult.selectVal == data[i].name){
-                    var cityData = data[i].cityList;
-                    cityResult = _this.updateList(params[1],cityData);
-                    var cCount = cityData.length;
-                    for(var j = 0 ; j < cCount ; j++){
-                        if(cityResult.selectVal == cityData[j].name){
-                            areaResult = _this.updateList(params[2],cityData[j].areaList);
-                        }
-                    }
-                }
-            }
-
-            _this.selectedData = {
-                province : provinceResult.selectVal,
-                city : cityResult.selectVal,
-                area : areaResult.selectVal
             };
         },
         listen : function (dom,eventName,callback) {
